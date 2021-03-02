@@ -24,12 +24,17 @@ public class UsuarioService {
 		return usuarioDTOs;
 	}
 
-	public UsuarioDTO obterPorId(Long id) {
+	public UsuarioDTO obterUsuarioPorId(Long id) {
 
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		if (usuario.isPresent()) {
 			return new UsuarioDTO(usuario.get());
 		}
+		return null;
+	}
+
+	public Usuario salvarUsuario(Usuario usuario) {
+		// TODO A SER IMPLEMENTADO QUANDO QUANDO LOGIN ESTIVER PRONTO
 		return null;
 	}
 }
