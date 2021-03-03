@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -20,6 +21,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	/**
+	 * Injeta em AutenticacaoTokenFilter um TokenService
+	 */
+	@Autowired
+	private TokenService tokenService;
 	
 	@Override
 	@Bean
@@ -40,13 +47,13 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		// TODO recursos estáticos
-		super.configure(web);
+		
 	}
 	
 	//$2a$10$N2UxmQhPEGJoAIXLjTTSwuxyXM8NJ3rjKHfW/IKe9Env24tMPcjMa

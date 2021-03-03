@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.javangers.bankline.config.security.TokenService;
 import br.org.javangers.bankline.controller.dto.LoginDTO;
+import br.org.javangers.bankline.controller.dto.TokenDTO;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,18 +27,16 @@ public class LoginController {
 	private TokenService tokenService;
 	
 	@PostMapping
-	public ResponseEntity<?> autenticar(@RequestBody @Validated LoginDTO loginDTO ){
+	public ResponseEntity<TokenDTO> autenticar(@RequestBody @Validated LoginDTO loginDTO ){
 		
 		UsernamePasswordAuthenticationToken dadosLogin = loginDTO.converter();
 		try {
 			Authentication authenticate = authenticationManager.authenticate(dadosLogin);
 			String token = tokenService.gerarToken(authenticate);
-			System.out.println(token);
-			
-			
-			return ResponseEntity.ok().build();
-			
+			return ResponseEntity.ok(new TokenDTO(token, "Bearer"));
+						
 		} catch (AuthenticationException e) {
+			
 			return ResponseEntity.badRequest().build();
 		}
 		
