@@ -18,9 +18,9 @@ public class LancamentoController {
 	@Autowired
 	private LancamentoService lancamentoService;
 	
-	@GetMapping
-	public List<Lancamento> getLancamentos() {
-		List<LancamentoDTO> lancamentosDTO = lancamentoService.listarLancamentos();
-		return lancamentosDTO;
-	}
+//	@GetMapping
+//	public List<Lancamento> getLancamentos() {
+//		List<LancamentoDTO> lancamentosDTO = lancamentoService.listarLancamentos();
+//		return lancamentosDTO;
+//	}
 }

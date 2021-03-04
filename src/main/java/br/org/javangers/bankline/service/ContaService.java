@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import br.org.javangers.bankline.exception.DataIntegrityException;
 import br.org.javangers.bankline.exception.ObjectNotFoundException;
 import br.org.javangers.bankline.model.Conta;
+import br.org.javangers.bankline.model.enums.TipoConta;
 import br.org.javangers.bankline.repository.ContaRepository;
 
 public class ContaService {
@@ -40,4 +41,16 @@ public class ContaService {
 	public List<Conta> findAll(){
 		return repo.findAll();
 	}
+	
+	public Conta findByTipo(String numero, TipoConta tipo) {
+		Conta obj = repo.findByNumeroAndTipo(numero, tipo.getDescricao());
+		return obj;
+	}
+	
+	public List<Conta> findByNumero(String numero) {
+		List<Conta> list = repo.findByNumero(numero);
+		return list;
+	}
+	
+	
 }
