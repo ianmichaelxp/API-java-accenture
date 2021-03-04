@@ -21,7 +21,9 @@ public class LoginService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Usuario> usuario = usuarioRepository.findByLogin(username);
 		if(usuario.isPresent()) {
-			return usuario.get();		
+			Usuario user = usuario.get();
+			System.out.println(user.toString());
+			return user;		
 		}
 		throw new UsernameNotFoundException("Dados inválido!");
 	}
