@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -47,7 +48,7 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter{
 		
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println(idUsuario);
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		return idUsuario;
 		
 	}
