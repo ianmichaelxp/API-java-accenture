@@ -46,13 +46,7 @@ public class DashboardService {
             List<Lancamento> lancamentosContaCorrente = lancamentoRepository.findTop10ByContaDestinoOrderByDataDesc(ccorrente.getId().toString());
             ContaDTO contaCorrente = new ContaDTO(ccorrente, lancamentosContaCorrente);
 
-            Optional<Conta> contaCreditoBuscada = contaRepository.findByNumeroAndTipo(usuario.getLogin(), TipoConta.CREDITO.getDescricao());
-            Conta ccredito = contaCreditoBuscada.get();
-            List<Lancamento> lancamentosContaCredito = lancamentoRepository.findTop10ByContaDestinoOrderByDataDesc(ccredito.getId().toString());
-            ContaDTO contaCredito = new ContaDTO(ccredito, lancamentosContaCredito);
-
             dashboard.setContaCorrente(contaCorrente);
-            dashboard.setContaCredito(contaCredito);
         }
 
         return dashboard;
@@ -70,19 +64,11 @@ public class DashboardService {
 
             Optional<Conta> contaCorrenteBuscada = contaRepository.findByNumeroAndTipo(usuario.getLogin(), TipoConta.DEBITO.getDescricao());
             Conta ccorrente = contaCorrenteBuscada.get();
-            List<Lancamento> lancamentosContaCorrente = lancamentoRepository.findAllByDataBetweenAndContaDestino(extratoRequestDto.getInicio(), extratoRequestDto.getFim(), ccorrente.getId());
+            List<Lancamento> lancamentosContaCorrente = lancamentoRepository.findAllByDataBetweenAndContaDestino(extratoRequestDto.getInicio(), extratoRequestDto.getFim(), ccorrente.getId().toString());
             ContaDTO contaCorrente = new ContaDTO(ccorrente, lancamentosContaCorrente);
 
-            Optional<Conta> contaCreditoBuscada = contaRepository.findByNumeroAndTipo(usuario.getLogin(), TipoConta.CREDITO.getDescricao());
-            Conta ccredito = contaCreditoBuscada.get();
-            List<Lancamento> lancamentosContaCredito = lancamentoRepository.findAllByDataBetweenAndContaDestino(extratoRequestDto.getInicio(), extratoRequestDto.getFim(), ccredito.getId());
-            ContaDTO contaCredito = new ContaDTO(ccredito, lancamentosContaCredito);
-
             extrato.setContaCorrente(contaCorrente);
-            extrato.setContaCredito(contaCredito);
         }
-
-        System.out.println(extrato);
 
         return extrato;
     }

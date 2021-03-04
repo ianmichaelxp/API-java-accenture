@@ -23,7 +23,7 @@ import br.org.javangers.bankline.service.LancamentoService;
 import br.org.javangers.bankline.service.PlanoContaService;
 
 @RestController
-@RequestMapping("/usuarios/lancamento")
+@RequestMapping("/api/usuarios/lancamento")
 public class LancamentoController {
 	
 	@Autowired

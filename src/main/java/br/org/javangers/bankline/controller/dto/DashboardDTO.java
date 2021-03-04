@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DashboardDTO {
     private ContaDTO contaCorrente;
-    private ContaDTO contaCredito;
 }
