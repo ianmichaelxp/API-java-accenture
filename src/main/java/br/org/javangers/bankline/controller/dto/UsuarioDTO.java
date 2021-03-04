@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 public class UsuarioDTO {
 
-
 	private String login;
 	
 	private String senha;
@@ -19,7 +18,7 @@ public class UsuarioDTO {
 	private String nome;
 	
 	private String cpf;
-	
+		
 	public UsuarioDTO(Usuario usuario) {
 		this.login = usuario.getLogin();
 		this.senha = usuario.getSenha();
