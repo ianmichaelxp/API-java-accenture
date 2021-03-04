@@ -2,6 +2,7 @@ package br.org.javangers.bankline.service;
 
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,8 @@ public class DBService {
 		contaS.saveAll(Arrays.asList(c1,c2));
 		planoContaS.save(pl1);
 		
+		List<PlanoConta> list = planoContaS.findByLogin(user1.getLogin());
+		
+		list.stream().forEach(p->System.out.println("PLANO CONTA : "+p.toString()));
 	}
 }
