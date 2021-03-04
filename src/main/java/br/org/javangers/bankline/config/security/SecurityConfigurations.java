@@ -44,11 +44,32 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//		.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
+//		.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
+//		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+//		.antMatchers("/h2-console/**").permitAll()
+//		.and()
+//        .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+//		.anyRequest().authenticated()
+//        .and()
+//        .headers().frameOptions().disable()
+//        .and()
+//        .csrf().ignoringAntMatchers("/h2-console/**")
+//        .and()
+//		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+//		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
+//	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
 		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
@@ -60,7 +81,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		
 	}
-	
+	//new BCryptPasswordEncoder().encode("123456")
 	//$2a$10$N2UxmQhPEGJoAIXLjTTSwuxyXM8NJ3rjKHfW/IKe9Env24tMPcjMa
 
 }
