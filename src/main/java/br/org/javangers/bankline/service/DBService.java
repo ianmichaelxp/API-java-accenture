@@ -43,6 +43,6 @@ public class DBService {
 		
 		List<PlanoConta> list = planoContaS.findByLogin(user1.getLogin());
 		
-		list.stream().forEach(p->System.out.println(p.toString()));
+		list.stream().forEach(p->System.out.println("PLANO CONTA : "+p.toString()));
 	}
 }
