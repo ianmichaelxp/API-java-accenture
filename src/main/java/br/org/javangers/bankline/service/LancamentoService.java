@@ -1,22 +1,19 @@
 package br.org.javangers.bankline.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.org.javangers.bankline.controller.dto.LancamentoDTO;
-import br.org.javangers.bankline.controller.dto.UsuarioDTO;
 import br.org.javangers.bankline.model.Conta;
 import br.org.javangers.bankline.model.Lancamento;
 import br.org.javangers.bankline.model.PlanoConta;
-import br.org.javangers.bankline.model.Usuario;
 import br.org.javangers.bankline.model.enums.TipoMovimento;
 import br.org.javangers.bankline.repository.ContaRepository;
 import br.org.javangers.bankline.repository.LancamentoRepository;
 import br.org.javangers.bankline.repository.PlanoContaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LancamentoService {
@@ -84,7 +81,7 @@ public class LancamentoService {
 		}
 		
 
-Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.getCategoria());
+		Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.getCategoria());
 		
 		if (!planoConta.isPresent()) {
 			throw new IllegalArgumentException();
@@ -120,7 +117,7 @@ Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.ge
 		
 		if (lancamentoDto.getTipo() == TipoMovimento.TRANSFERENCIA)  {
 
-			Optional<Conta> contaDestino = contaRepository.findByContaDestino(lancamentoDto.getContaDestino());
+			Optional<Conta> contaDestino = contaRepository.findByUsuario_Login(lancamentoDto.getContaDestino());
 			if (!contaDestino.isPresent()) {
 				throw new IllegalArgumentException();
 			}
