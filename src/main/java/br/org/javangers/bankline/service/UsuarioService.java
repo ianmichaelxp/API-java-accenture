@@ -4,11 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-=======
->>>>>>> ccf2412b3779dd6d81f0b2ac848d045e6649871a
 import org.springframework.stereotype.Service;
 
 import br.org.javangers.bankline.controller.dto.UsuarioDTO;
