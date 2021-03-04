@@ -10,14 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UsuarioDTO {
-
-	public UsuarioDTO(Usuario usuario) {
-		this.login = usuario.getLogin();
-		this.senha = usuario.getSenha();
-		this.nome = usuario.getNome();
-		this.cpf = usuario.getCpf();
-	}
-
+	
 	private String login;
 	
 	private String senha;
@@ -25,6 +18,15 @@ public class UsuarioDTO {
 	private String nome;
 	
 	private String cpf;
+	
+	public UsuarioDTO(Usuario usuario) {
+		this.login = usuario.getLogin();
+		this.senha = usuario.getSenha();
+		this.nome = usuario.getNome();
+		this.cpf = usuario.getCpf();
+	}
+
+	
 	
 	public static List<UsuarioDTO> usuarioToDTO(List<Usuario> usuarios) {
 	    List<UsuarioDTO> UsuariosDTOs = usuarios.stream().map(usuario -> {
