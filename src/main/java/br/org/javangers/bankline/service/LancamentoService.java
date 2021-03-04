@@ -1,22 +1,21 @@
 package br.org.javangers.bankline.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.org.javangers.bankline.controller.dto.LancamentoDTO;
-import br.org.javangers.bankline.controller.dto.UsuarioDTO;
 import br.org.javangers.bankline.model.Conta;
 import br.org.javangers.bankline.model.Lancamento;
 import br.org.javangers.bankline.model.PlanoConta;
-import br.org.javangers.bankline.model.Usuario;
 import br.org.javangers.bankline.model.enums.TipoMovimento;
 import br.org.javangers.bankline.repository.ContaRepository;
 import br.org.javangers.bankline.repository.LancamentoRepository;
 import br.org.javangers.bankline.repository.PlanoContaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class LancamentoService {
 
 	@Autowired
@@ -37,8 +36,8 @@ public class LancamentoService {
 		
 		return lancamentoDTOs;
 	}*/
-		
-	
+
+
 	public Optional<Lancamento> obterLancamentoPorId(long id) {
 		return lancamentoRepository.findById(id);
 	}
@@ -59,7 +58,7 @@ public class LancamentoService {
 			throw new IllegalArgumentException();
 		}
 
-		return lancamentoRepository.findAllByDataBetweenAndContaId(primeira, ultima, idMinhaConta );
+		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta );
 	}
 	
 	public void novoLancamento(LancamentoDTO lancamentoDto) {
@@ -82,7 +81,7 @@ public class LancamentoService {
 		}
 		
 
-Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.getCategoria());
+		Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.getCategoria());
 		
 		if (!planoConta.isPresent()) {
 			throw new IllegalArgumentException();
@@ -113,37 +112,37 @@ Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.ge
 				minhaConta.setSaldo(minhaConta.getSaldo() - lancamentoDto.getValor());
 				contaRepository.save(minhaConta);
 				lancamentoRepository.save(novoLancamento);
-			}  
+			}
 		}
 		
-		if (lancamentoDto.getTipo() == TipoMovimento.TRANSFERENCIA)  { 
-			
-			Optional<Conta> contaDestino = contaRepository.findByContaDestino(lancamentoDto.getContaDestino()); 
+		if (lancamentoDto.getTipo() == TipoMovimento.TRANSFERENCIA)  {
+
+			Optional<Conta> contaDestino = contaRepository.findByUsuario_Login(lancamentoDto.getContaDestino());
 			if (!contaDestino.isPresent()) {
 				throw new IllegalArgumentException();
 			}
-			
+
 			Conta contaDst = contaDestino.get();
 			novoLancamento.setContaDestino(contaDst.getNumero());
-			
+
 			if (minhaConta.getSaldo() - lancamentoDto.getValor() >= 0) {
-				
+
 				minhaConta.setSaldo(minhaConta.getSaldo() - lancamentoDto.getValor());
 				contaDst.setSaldo(contaDst.getSaldo() + lancamentoDto.getValor());
-				
+
 				contaRepository.save(minhaConta);
 				contaRepository.save(contaDst);
-				
-				
-				novoLancamento.setValor(-lancamentoDto.getValor());	
+
+
+				novoLancamento.setValor(-lancamentoDto.getValor());
 				lancamentoRepository.save(novoLancamento);
-				
+
 				Lancamento lancamentoDst = new Lancamento(contaDst.getNumero(), LocalDate.now(), lancamentoDto.getDescricao(), lancamentoDto.getTipo(), planoConta.get());
-				lancamentoDst.setValor(lancamentoDto.getValor());	
+				lancamentoDst.setValor(lancamentoDto.getValor());
 				lancamentoRepository.save(lancamentoDst);
-				
-			} 		
-			
+
+			}
+
 		}
 		
 	}
