@@ -142,4 +142,27 @@ public class PlanoConta implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PlanoConta [id=");
+		builder.append(id);
+		builder.append(", login=");
+		builder.append(login);
+		builder.append(", descricao=");
+		builder.append(descricao);
+		builder.append(", tipoMovimento=");
+		builder.append(tipoMovimento);
+		builder.append(", data=");
+		builder.append(data);
+		builder.append(", padrao=");
+		builder.append(padrao);
+		builder.append(", usuario=");
+		builder.append(usuario);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
+	
 }

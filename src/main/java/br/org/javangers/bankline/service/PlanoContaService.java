@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import br.org.javangers.bankline.controller.dto.PlanoContaDTO;
 import br.org.javangers.bankline.exception.DataIntegrityException;
@@ -15,7 +16,7 @@ import br.org.javangers.bankline.model.PlanoConta;
 import br.org.javangers.bankline.model.Usuario;
 import br.org.javangers.bankline.repository.PlanoContaRepository;
 import br.org.javangers.bankline.repository.UsuarioRepository;
-
+@Service
 public class PlanoContaService {
 
 	@Autowired

@@ -43,14 +43,14 @@ public class LancamentoController {
 		 lancamentoService.novoLancamento(lancamentoDto);
 	}
 	
-	@RequestMapping(name = "/planos-conta",method = RequestMethod.POST)
+	@RequestMapping(value = "/planos-conta",method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody PlanoContaDTO objDto){
 		PlanoConta obj = planoContaService.fromDTO(objDto);
 		planoContaService.insert(obj);
 		
 		return ResponseEntity.ok(null);
 	}
-	@RequestMapping(name = "/planos-conta",method = RequestMethod.GET)
+	@RequestMapping(value = "/planos-conta",method = RequestMethod.GET)
 	public ResponseEntity<List<PlanoContaDTO>> findByUser(@RequestParam(value = "login", defaultValue = "" )String login){
 		List<PlanoConta> objs = planoContaService.findByLogin(login);
 		List<PlanoContaDTO> objsDto = objs.stream().map(p->new PlanoContaDTO(p)).collect(Collectors.toList());
