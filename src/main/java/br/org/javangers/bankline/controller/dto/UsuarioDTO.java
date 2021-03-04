@@ -13,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioDTO {
 
+<<<<<<< HEAD
 	//Cannot construct instance of `br.org.javangers.bankline.controller.dto.UsuarioDTO` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
 	public UsuarioDTO(Usuario usuario) {
 		this.login = usuario.getLogin();
@@ -21,6 +22,8 @@ public class UsuarioDTO {
 		this.cpf = usuario.getCpf();
 	}
 
+=======
+>>>>>>> ccf2412b3779dd6d81f0b2ac848d045e6649871a
 	private String login;
 	
 	private String senha;
@@ -28,6 +31,13 @@ public class UsuarioDTO {
 	private String nome;
 	
 	private String cpf;
+		
+	public UsuarioDTO(Usuario usuario) {
+		this.login = usuario.getLogin();
+		this.senha = usuario.getSenha();
+		this.nome = usuario.getNome();
+		this.cpf = usuario.getCpf();
+	}
 	
 	public static List<UsuarioDTO> usuarioToDTO(List<Usuario> usuarios) {
 	    List<UsuarioDTO> UsuariosDTOs = usuarios.stream().map(usuario -> {
