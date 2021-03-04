@@ -4,29 +4,45 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.lang.NonNull;
+
 import br.org.javangers.bankline.model.enums.TipoConta;
 
+@Entity
 public class Conta implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String numero;
 	private Double saldo;
+	@NonNull
 	private String tipo;
 	private Date data;
 	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	public Conta() {
 		this.data = Calendar.getInstance().getTime();
 	}
 
-	public Conta(Long id, String numero, Double saldo, TipoConta tipo, Usuario usuario) {
+	public Conta(Long id, Double saldo, TipoConta tipo, Usuario usuario) {
 		super();
 		this.id = id;
-		this.numero = numero;
+		this.numero = usuario.getLogin();
 		this.saldo = saldo;
-		this.tipo = tipo.getDescricao();
+		this.tipo = (tipo==null)?null:tipo.getDescricao();
 		this.usuario = usuario;
 		this.data = Calendar.getInstance().getTime();
 	}

@@ -6,4 +6,5 @@ import br.org.javangers.bankline.model.Conta;
 
 public interface ContaReposirory extends JpaRepository<Long, Conta>{
 
+	
 }
