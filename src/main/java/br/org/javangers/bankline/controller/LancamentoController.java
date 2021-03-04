@@ -14,7 +14,7 @@ import br.org.javangers.bankline.model.Lancamento;
 import br.org.javangers.bankline.service.LancamentoService;
 
 @RestController
-@RequestMapping("/usuarios/lancamento")
+@RequestMapping("/api/usuarios/lancamento")
 public class LancamentoController {
 	
 	@Autowired

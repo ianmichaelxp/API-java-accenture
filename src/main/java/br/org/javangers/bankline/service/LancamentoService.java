@@ -51,14 +51,14 @@ public class LancamentoService {
 		return null;
 	}*/
 	
-	public Optional<Lancamento> ExtratoPorPeriodo(LocalDate primeira, LocalDate ultima, long idMinhaConta) {
+	public List<Lancamento> ExtratoPorPeriodo(LocalDate primeira, LocalDate ultima, String idMinhaConta) {
 
 		
 		if (primeira == null || ultima == null || ultima.isBefore(primeira)) {
 			throw new IllegalArgumentException();
 		}
 
-		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta );
+		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta);
 	}
 	
 	public void novoLancamento(LancamentoDTO lancamentoDto) {
