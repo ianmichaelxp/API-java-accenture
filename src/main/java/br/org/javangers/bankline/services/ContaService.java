@@ -5,12 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.org.javangers.bankline.model.Conta;
-import br.org.javangers.bankline.repository.ContaReposirory;
+import br.org.javangers.bankline.repository.ContaRepository;
 
 public class ContaService {
 
 	@Autowired
-	private ContaReposirory contaRepo;
+	private ContaRepository contaRepo;
 	
 //	public Conta find(Long id) {
 //		Optional<Conta> obj = contaRepo.findById(id);

@@ -1,5 +1,6 @@
 package br.org.javangers.bankline.controller.dto;
 
+import br.org.javangers.bankline.model.enums.TipoMovimento;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

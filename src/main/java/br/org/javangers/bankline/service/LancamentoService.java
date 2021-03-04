@@ -7,10 +7,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.org.javangers.bankline.controller.dto.LancamentoDTO;
+import br.org.javangers.bankline.exception.SaldoInsuficienteException;
+import br.org.javangers.bankline.model.Conta;
 import br.org.javangers.bankline.model.Lancamento;
 import br.org.javangers.bankline.model.PlanoConta;
-import br.org.javangers.bankline.model.TipoMovimento;
+import br.org.javangers.bankline.model.enums.TipoMovimento;
+import br.org.javangers.bankline.repository.ContaRepository;
 import br.org.javangers.bankline.repository.LancamentoRepository;
+import br.org.javangers.bankline.repository.PlanoContaRepository;
+
+
+
 
 public class LancamentoService {
 
@@ -68,20 +75,20 @@ public class LancamentoService {
 		}
 		
 		
-		if (lancamentoDto.getTipo() == TipoMovimento.TRANSFERENCIAS && lancamentoDto.getContaDestino() == null) {
+		if (lancamentoDto.getTipo() == TipoMovimento.TRANSFERENCIA_ENTRE_CONTAS&& lancamentoDto.getContaDestino() == null) {
 			
 			throw new IllegalArgumentException();
 			
 		}
 		
 
-		Optional<PlanoConta> planoConta = planoContaRepository.findById(lancamentoDto.getCategoria());
+		Optional<PlanoConta> planoConta = planoContaRepository.findById(Long.valueOf(lancamentoDto.getCategoria()));
 		
 		if (!planoConta.isPresent()) {
 			throw new IllegalArgumentException();
 		}
 
-		Optional<Conta> conta = contaRepository.findById(lancamentoDto.getIdContaUsuario());
+		Optional<Conta> conta ;//TODO = contaRepository.findById(lancamentoDto.getIdContaUsuario());
 		
 		if (!conta.isPresent()) {
 			throw new IllegalArgumentException();
@@ -94,20 +101,20 @@ public class LancamentoService {
 		if (lancamentoDto.getTipo() == TipoMovimento.RECEITA) {
 			
 			novoLancamento.setValor(lancamentoDto.getValor());
-			minhaConta.receitas(lancamentoDto.getValor()); //verificar método, Nailson
-			contaRepository.save(minhaConta;
+//			minhaConta.receitas(lancamentoDto.getValor()); // TODO verificar método, Nailson
+			contaRepository.save(minhaConta);
 			lancamentoRepository.save(novoLancamento);
 			
 		}
 		
-		if (lancamentoDto.getTipo() == TipoMovimento.DESPESAS) {
+		if (lancamentoDto.getTipo() == TipoMovimento.DESPESA) {
 			if (minhaConta.getSaldo() - lancamentoDto.getValor() >= 0) {
 				novoLancamento.setValor(-lancamentoDto.getValor());
-				minhaConta.despesas(lancamentoDto.getValor()); //verificar método, Nailson
-				contaRepository.save(minhaConta);
-				contaRepository.save(novoLancamento);
+//				minhaConta.despesas(lancamentoDto.getValor()); //TODO verificar método, Nailson
+//				contaRepository.save(minhaConta);//TODO
+//				contaRepository.save(novoLancamento);//TODO
 			} else {
-				throw new SaldoInsuficienteException(); //Tratar exceção
+				throw new SaldoInsuficienteException("Saldo Insulficiente para esta operação"); //Tratar exceção
 			}
 		}
 		

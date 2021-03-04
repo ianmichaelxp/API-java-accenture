@@ -11,18 +11,18 @@ import br.org.javangers.bankline.model.PlanoConta;
 import br.org.javangers.bankline.model.Usuario;
 import br.org.javangers.bankline.model.enums.TipoConta;
 import br.org.javangers.bankline.model.enums.TipoMovimento;
-import br.org.javangers.bankline.repository.ContaReposirory;
-import br.org.javangers.bankline.repository.PlanoContaReposirory;
+import br.org.javangers.bankline.repository.ContaRepository;
+import br.org.javangers.bankline.repository.PlanoContaRepository;
 import br.org.javangers.bankline.repository.UsuarioRepository;
 
 @Service
 public class DBService {
 	
 	@Autowired
-	private ContaReposirory contaS;
+	private ContaRepository contaS;
 	
 	@Autowired
-	private PlanoContaReposirory planoContaS;
+	private PlanoContaRepository planoContaS;
 	
 	@Autowired
 	private UsuarioRepository usuarioS;

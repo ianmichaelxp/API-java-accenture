@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.javangers.bankline.controller.dto.LancamentoDTO;
 import br.org.javangers.bankline.model.Lancamento;
+import br.org.javangers.bankline.service.LancamentoService;
 
 @RestController
 @RequestMapping("/usuarios/lancamento")

@@ -9,12 +9,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import br.org.javangers.bankline.exception.DataIntegrityException;
 import br.org.javangers.bankline.exception.ObjectNotFoundException;
 import br.org.javangers.bankline.model.Conta;
-import br.org.javangers.bankline.repository.ContaReposirory;
+import br.org.javangers.bankline.repository.ContaRepository;
 
 public class ContaService {
 
 	@Autowired
-	private ContaReposirory repo;
+	private ContaRepository repo;
 	
 	public Conta find(Long id) {
 		Optional<Conta> obj = repo.findById(id);

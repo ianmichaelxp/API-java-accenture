@@ -9,12 +9,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import br.org.javangers.bankline.exception.DataIntegrityException;
 import br.org.javangers.bankline.exception.ObjectNotFoundException;
 import br.org.javangers.bankline.model.PlanoConta;
-import br.org.javangers.bankline.repository.PlanoContaReposirory;
+import br.org.javangers.bankline.repository.PlanoContaRepository;
 
 public class PlanoContaService {
 
 	@Autowired
-	private PlanoContaReposirory repo;
+	private PlanoContaRepository repo;
 	
 	public PlanoConta find(Long id) {
 		Optional<PlanoConta> obj = repo.findById(id);
