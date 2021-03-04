@@ -44,12 +44,38 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//		.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
+//		.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
+//		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+//		.antMatchers("/h2-console/**").permitAll()
+//		.and()
+//        .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+//		.anyRequest().authenticated()
+//        .and()
+//        .headers().frameOptions().disable()
+//        .and()
+//        .csrf().ignoringAntMatchers("/h2-console/**")
+//        .and()
+//		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+//		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
+//	}
+
+	private static final String[] SWAGGER_WHITELIST = { "/v2/api-docs", "/swagger-resources", "/swagger-resources/**",
+			"/configuration/ui", "/configuration/security", "/swagger-ui.html", "/webjars/**" };
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
-		.antMatchers(HttpMethod.POST, "/auth").permitAll()
-		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+		.antMatchers(HttpMethod.GET, "/api/usuarios").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+//		.antMatchers("/api/**").permitAll()
+//		.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+		.antMatchers(SWAGGER_WHITELIST).permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -60,7 +86,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		
 	}
-	
+	//new BCryptPasswordEncoder().encode("123456")
 	//$2a$10$N2UxmQhPEGJoAIXLjTTSwuxyXM8NJ3rjKHfW/IKe9Env24tMPcjMa
 
 }

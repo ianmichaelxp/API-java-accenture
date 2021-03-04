@@ -3,14 +3,16 @@ package br.org.javangers.bankline.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import br.org.javangers.bankline.controller.dto.PlanoContaDTO;
 import br.org.javangers.bankline.exception.DataIntegrityException;
 import br.org.javangers.bankline.exception.ObjectNotFoundException;
 import br.org.javangers.bankline.model.PlanoConta;
 import br.org.javangers.bankline.model.Usuario;
-import br.org.javangers.bankline.repository.ContaRepository;
 import br.org.javangers.bankline.repository.PlanoContaRepository;
 import br.org.javangers.bankline.repository.UsuarioRepository;
 
@@ -52,6 +54,18 @@ public class PlanoContaService {
 	
 	public List<PlanoConta> findAll(){
 		return repo.findAll();
+	}
+
+	public List<PlanoConta> findByLogin(String login){
+		List<PlanoConta> list = repo.findByLogin(login);
+		
+		return list;
+	}
+	
+	
+	public PlanoConta fromDTO(@Valid PlanoContaDTO objDto) {
+		PlanoConta obj = new PlanoConta(objDto);
+		return obj;
 	}
 	
 	

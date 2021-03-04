@@ -16,7 +16,7 @@ public class LancamentoDTO {
 	private Double valor;
 	private String descricao;
 	private TipoMovimento tipo;
-	private Integer categoria;
+	private Long categoria;
 	private String ContaDestino;
 	
 

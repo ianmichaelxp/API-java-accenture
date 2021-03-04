@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 import br.org.javangers.bankline.model.Usuario;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UsuarioDTO {
 
 	private String login;
@@ -32,6 +34,10 @@ public class UsuarioDTO {
 	    }).collect(Collectors.toList());
 
 	    return UsuariosDTOs;
+	}
+
+	public static Usuario usuarioToEntity(UsuarioDTO usuarioDTO) {
+		return new Usuario();
 	}
 	
 	

@@ -17,7 +17,7 @@ import br.org.javangers.bankline.controller.dto.LoginDTO;
 import br.org.javangers.bankline.controller.dto.TokenDTO;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class LoginController {
 	
 	@Autowired

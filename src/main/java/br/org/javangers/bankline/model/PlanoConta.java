@@ -10,9 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 import org.springframework.lang.NonNull;
 
+import br.org.javangers.bankline.controller.dto.PlanoContaDTO;
 import br.org.javangers.bankline.model.enums.TipoMovimento;
 
 @Entity
@@ -47,6 +49,15 @@ public class PlanoConta implements Serializable {
 		this.data = Calendar.getInstance().getTime();
 		this.padrao = padrao;
 		this.usuario = usuario;
+	}
+
+	public PlanoConta(PlanoContaDTO o) {
+		this.id = o.getId();
+		this.login = o.getLogin();
+		this.descricao = o.getDescricao();
+		this.padrao = o.isPadrao();
+		this.tipoMovimento = o.getTipoMovimento();
+		this.data = Calendar.getInstance().getTime();		
 	}
 
 	public Long getId() {

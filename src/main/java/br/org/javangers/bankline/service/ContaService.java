@@ -42,10 +42,14 @@ public class ContaService {
 		return repo.findAll();
 	}
 	
-	public Conta findByTipo(String numero, TipoConta tipo) {
-		Conta obj = repo.findByNumeroAndTipo(numero, tipo.getDescricao());
-		return obj;
+	public Conta findByTipo(final String numero, final TipoConta tipo) {
+		Optional<Conta> obj = repo.findByNumeroAndTipo(numero, tipo.getDescricao());
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				 "Objeto não encontrado! Id: " + numero + ", Tipo: " + Conta.class.getName()));
 	}
+	
+	
 	
 	public List<Conta> findByNumero(String numero) {
 		List<Conta> list = repo.findByNumero(numero);
