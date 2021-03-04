@@ -63,14 +63,19 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 //		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
 //	}
-	
+
+	private static final String[] SWAGGER_WHITELIST = { "/v2/api-docs", "/swagger-resources", "/swagger-resources/**",
+			"/configuration/ui", "/configuration/security", "/swagger-ui.html", "/webjars/**" };
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/api/usuarios").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/auth").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
-		//.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+//		.antMatchers("/api/**").permitAll()
+//		.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+		.antMatchers(SWAGGER_WHITELIST).permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
