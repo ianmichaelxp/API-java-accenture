@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +22,13 @@ public class LancamentoController {
 	
 	@GetMapping
 	public List<Lancamento> getLancamentos() {
-		List<LancamentoDTO> lancamentosDTO = lancamentoService.listarLancamentos();
-		return lancamentosDTO;
+		return lancamentoService.listarLancamentos();
 	}
+	
+	@PostMapping
+	public void realizarLancamento(@RequestBody LancamentoDTO lancamentoDto) {
+		
+		 lancamentoService.novoLancamento(lancamentoDto);
+	}
+	
 }
