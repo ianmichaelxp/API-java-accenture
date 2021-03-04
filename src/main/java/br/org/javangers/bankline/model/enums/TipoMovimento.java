@@ -3,8 +3,7 @@ package br.org.javangers.bankline.model.enums;
 public enum TipoMovimento {
 	RECEITA(1, "R"),
 	DESPESA(2, "D"),
-	TRANSFERENCIA_ENTRE_CONTAS(3, "TC"),
-	TRANSFERENCIA_ENTRE_USUARIOS(4, "TU");
+	TRANSFERENCIA(3, "T");
 	
 	private int cod;
 	private String descricao;
