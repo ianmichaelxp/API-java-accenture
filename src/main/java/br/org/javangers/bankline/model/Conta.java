@@ -23,10 +23,12 @@ public class Conta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	private String numero;
-	private Double saldo;
+	private double saldo;
 	@NonNull
 	private String tipo;
+
 	private Date data;
 	
 	@ManyToOne
@@ -37,7 +39,7 @@ public class Conta implements Serializable{
 		this.data = Calendar.getInstance().getTime();
 	}
 
-	public Conta(Long id, Double saldo, TipoConta tipo, Usuario usuario) {
+	public Conta(Long id, double saldo, TipoConta tipo, Usuario usuario) {
 		super();
 		this.id = id;
 		this.numero = usuario.getLogin();

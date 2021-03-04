@@ -8,35 +8,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.lang.NonNull;
 
 import br.org.javangers.bankline.model.enums.TipoMovimento;
 
 @Entity
-public class PlanoConta implements Serializable{
+public class PlanoConta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NonNull
 	private String login;
 	private String descricao;
+	@NonNull
 	private String tipoMovimento;
 	private Date data;
 	private boolean padrao;
 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
 	public PlanoConta() {
 		this.data = Calendar.getInstance().getTime();
 	}
 
-	public PlanoConta(Long id, String login, String descricao, TipoMovimento tipoMovimento, boolean padrao,
-			Usuario usuario) {
+	public PlanoConta(Long id, String descricao, TipoMovimento tipoMovimento, boolean padrao, Usuario usuario) {
 		super();
 		this.id = id;
-		this.login = login;
+		this.login = usuario.getUsername();
 		this.descricao = descricao;
-		this.tipoMovimento = tipoMovimento.getDescricao();
+		this.tipoMovimento = (tipoMovimento == null) ? null : tipoMovimento.getDescricao();
 		this.data = Calendar.getInstance().getTime();
 		this.padrao = padrao;
 		this.usuario = usuario;
@@ -95,6 +102,7 @@ public class PlanoConta implements Serializable{
 	}
 
 	public void setUsuario(Usuario usuario) {
+		setLogin(usuario.getUsername());
 		this.usuario = usuario;
 	}
 
@@ -123,6 +131,4 @@ public class PlanoConta implements Serializable{
 		return true;
 	}
 
-	
-	
 }
