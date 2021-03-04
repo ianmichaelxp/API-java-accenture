@@ -15,10 +15,9 @@ import br.org.javangers.bankline.model.enums.TipoMovimento;
 import br.org.javangers.bankline.repository.ContaRepository;
 import br.org.javangers.bankline.repository.LancamentoRepository;
 import br.org.javangers.bankline.repository.PlanoContaRepository;
+import org.springframework.stereotype.Service;
 
-
-
-
+@Service
 public class LancamentoService {
 
 	@Autowired
@@ -59,7 +58,7 @@ public class LancamentoService {
 			throw new IllegalArgumentException();
 		}
 
-		return lancamentoRepository.findAllByDataBetweenAndContaId(primeira, ultima, idMinhaConta );
+		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta );
 	}
 	
 	public void novoLancamento(LancamentoDTO lancamentoDto) {
@@ -88,7 +87,7 @@ public class LancamentoService {
 			throw new IllegalArgumentException();
 		}
 
-		Optional<Conta> conta ;//TODO = contaRepository.findById(lancamentoDto.getIdContaUsuario());
+		Optional<Conta> conta = contaRepository.findById(lancamentoDto.getIdMinhaConta());
 		
 		if (!conta.isPresent()) {
 			throw new IllegalArgumentException();
@@ -96,7 +95,7 @@ public class LancamentoService {
 		
 		Conta minhaConta = conta.get();
 		
-		Lancamento novoLancamento = new Lancamento(minhaConta.getNumero(), LocalDate.now(), lancamentoDto.getDescricao(), lancamentoDto.getTipo(), planoConta.getCategoria());
+		Lancamento novoLancamento = new Lancamento(minhaConta.getNumero(), LocalDate.now(), lancamentoDto.getDescricao(), lancamentoDto.getTipo(), planoConta.get());
 		
 		if (lancamentoDto.getTipo() == TipoMovimento.RECEITA) {
 			

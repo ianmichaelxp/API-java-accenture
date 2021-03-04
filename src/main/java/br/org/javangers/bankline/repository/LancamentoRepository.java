@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.org.javangers.bankline.model.Lancamento;
 
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long>{
-	Optional<Lancamento> findAllByDataBetweenAndContaId(LocalDate primeira, LocalDate ultima, long idMinhaConta);
+	Optional<Lancamento> findAllByDataBetweenAndContaDestino(LocalDate primeira, LocalDate ultima, long idMinhaConta);
 }

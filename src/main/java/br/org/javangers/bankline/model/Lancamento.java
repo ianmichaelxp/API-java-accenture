@@ -49,9 +49,8 @@ public class Lancamento {
     @JoinColumn(name = "categoria", referencedColumnName = "id")
 	private PlanoConta categoria;
 	
-	public Lancamento(Long id, String minhaConta, LocalDate data, String descricao, TipoMovimento tipo, PlanoConta categoria) {
+	public Lancamento(String minhaConta, LocalDate data, String descricao, TipoMovimento tipo, PlanoConta categoria) {
 		super();
-		this.id = id;
 		this.minhaConta = minhaConta;
 		this.data = data;
 		this.descricao = descricao;

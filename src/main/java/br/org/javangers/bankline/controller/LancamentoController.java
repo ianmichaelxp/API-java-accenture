@@ -20,7 +20,7 @@ public class LancamentoController {
 	
 	@GetMapping
 	public List<Lancamento> getLancamentos() {
-		List<LancamentoDTO> lancamentosDTO = lancamentoService.listarLancamentos();
-		return lancamentosDTO;
+		List<Lancamento> lancamentos = lancamentoService.listarLancamentos();
+		return lancamentos;
 	}
 }
