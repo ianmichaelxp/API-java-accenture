@@ -45,7 +45,7 @@ public class UsuarioController {
 	@PostMapping
 	public ResponseEntity<UsuarioDTO> criarUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException{
 		UsuarioDTO user = usuarioService.salvarUsuario(usuarioDTO);
-		System.out.println(user);
+
 		return ResponseEntity.created(new URI("/usuarios")).body(user);
 	}
 		

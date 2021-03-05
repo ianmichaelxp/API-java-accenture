@@ -35,8 +35,6 @@ public class DashboardService {
 
         Optional<Usuario> usuarioBuscado = usuarioRepository.findByLogin(login);
 
-        System.out.println(usuarioBuscado + " buscado.");
-
         if (usuarioBuscado.isPresent()) {
 
             Usuario usuario = usuarioBuscado.get();

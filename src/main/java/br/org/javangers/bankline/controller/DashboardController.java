@@ -16,7 +16,7 @@ public class DashboardController {
 
     @GetMapping("/{login}")
     public DashboardDTO getDashboard(@PathVariable(value="login") String login) {
-        System.out.println(login);
+
         return dashboardService.getUsuarioDash(login);
     }
 
