@@ -1,7 +1,7 @@
 # Projeto Accademia Accenture - Bankline Java API
 
 API de um Bankline com cadastro de usuário, contas e lançamentos.
-A documentação da API pode ser acessada em [<nossa_url>.herokuapp.com/swagger-ui.html](https://accountbank-api.herokuapp.com/swagger-ui.html)
+A documentação da API pode ser acessada em [https://banklineaccenture.herokuapp.com/swagger-ui.html](https://accountbank-api.herokuapp.com/swagger-ui.html)
 
 ## Time Javangers Assembly
 - [Ian Michel](https://github.com/ianmichel)
