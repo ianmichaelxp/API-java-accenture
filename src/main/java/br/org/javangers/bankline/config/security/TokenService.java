@@ -28,7 +28,7 @@ public class TokenService {
 		Date hoje = new Date();
 		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 		
-		String compact = Jwts.builder()
+		String compact = "Bearer "+Jwts.builder()
 							.setIssuer("BankLine")
 							.setSubject(usuarioLogado.getId().toString())
 							.setIssuedAt(hoje)

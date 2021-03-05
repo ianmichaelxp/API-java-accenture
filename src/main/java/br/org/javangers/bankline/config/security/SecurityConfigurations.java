@@ -56,14 +56,16 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, "/api/auth").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+		.antMatchers("/h2-console/**").permitAll()
 
-		.antMatchers(HttpMethod.GET,"/api/**").permitAll()
-		.antMatchers(HttpMethod.POST,"/api/**").permitAll()
-		.antMatchers("/api/dashboard/**").permitAll()
+//		.antMatchers(HttpMethod.GET,"/api/**").permitAll()
+//		.antMatchers(HttpMethod.POST,"/api/**").permitAll()
+//		.antMatchers("/api/dashboard/**").permitAll()
 		.antMatchers(SWAGGER_WHITELIST).permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and().headers().frameOptions().sameOrigin()
 		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
 	}
 	
