@@ -9,7 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class LancamentoDTO {
 	
 	private Long idMinhaConta;
@@ -17,6 +16,9 @@ public class LancamentoDTO {
 	private String descricao;
 	private TipoMovimento tipo;
 	private Long categoria;
-	private String ContaDestino;	
+	private String contaDestino;	
+
+	
+	
 	
 }

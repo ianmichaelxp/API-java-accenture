@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class ExtratoDTO {
     private String login;
     private ContaDTO contaCorrente;
-    private ContaDTO contaCredito;
 }

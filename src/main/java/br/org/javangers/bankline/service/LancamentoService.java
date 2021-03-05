@@ -29,36 +29,23 @@ public class LancamentoService {
 		return lancamentoRepository.findAll();
 	}
 		
-	/*
-	public List<LancamentoDTO> listarLancamentos() {
-		List<Lancamento> lancamentos = lancamentoRepository.findAll();
-		List<LancamentoDTO> lancamentoDTOs = LancamentoDTO.lancamentoToDTO(lancamentos);
-		
-		return lancamentoDTOs;
-	}*/
+	
 
 
 	public Optional<Lancamento> obterLancamentoPorId(long id) {
 		return lancamentoRepository.findById(id);
 	}
 	
-	/*public UsuarioDTO obterLancamentoPorId(Long id) {
-
-		Optional<Usuario> usuario = usuarioRepository.findById(id);
-		if (usuario.isPresent()) {
-			return new UsuarioDTO(usuario.get());
-		}
-		return null;
-	}*/
 	
-	public Optional<Lancamento> ExtratoPorPeriodo(LocalDate primeira, LocalDate ultima, long idMinhaConta) {
+	
+	public List<Lancamento> ExtratoPorPeriodo(LocalDate primeira, LocalDate ultima, String idMinhaConta) {
 
 		
 		if (primeira == null || ultima == null || ultima.isBefore(primeira)) {
 			throw new IllegalArgumentException();
 		}
 
-		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta );
+		return lancamentoRepository.findAllByDataBetweenAndContaDestino(primeira, ultima, idMinhaConta);
 	}
 	
 	public void novoLancamento(LancamentoDTO lancamentoDto) {

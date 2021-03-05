@@ -54,7 +54,15 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+<<<<<<< HEAD
+=======
+		.antMatchers(HttpMethod.GET,"/api/**").permitAll()
+		.antMatchers(HttpMethod.POST,"/api/**").permitAll()
+		.antMatchers("/api/dashboard/**").permitAll()
+//		.antMatchers(HttpMethod.GET, "/usuarios/*").permitAll()
+>>>>>>> branch 'main' of https://github.com/ianmichaelxp/API-java-accenture.git
 		.antMatchers(SWAGGER_WHITELIST).permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
