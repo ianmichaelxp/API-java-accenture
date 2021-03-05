@@ -24,13 +24,6 @@ public class UsuarioController {
 
 	@Autowired 
 	private UsuarioService usuarioService;
-	
-//	@PostMapping
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public Usuario criarUsuario(@Validated @RequestBody Usuario usuario) {
-//		
-//		return usuarioService.salvarUsuario(usuario);
-//	}
 
 	@GetMapping
 	public List<UsuarioDTO> obterListaUsuarios() {
@@ -45,7 +38,6 @@ public class UsuarioController {
 		if (usuarioDTOs != null) {
 			return ResponseEntity.ok().body(usuarioDTOs);
 		} else {
-			//ref
 			return ResponseEntity.notFound().build();
 		}
 	}

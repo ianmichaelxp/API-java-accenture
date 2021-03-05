@@ -17,27 +17,6 @@ public class LancamentoDTO {
 	private String descricao;
 	private TipoMovimento tipo;
 	private Long categoria;
-	private String ContaDestino;
-	
-
-	/*public LancamentoDTO(Lancamento lancamento) {
-		super();
-		this.idMinhaConta = lancamento.getidMinhaConta;
-		this.valor = lancamento.getValor();
-		this.descricao = lancamento.getDescricao();
-		this.categoria = lancamento.getCategoria();
-		this.numeroContaDestino = lancamento.getContaDestino();
-	}
-	
-	
-	public static List<LancamentoDTO> lancamentoToDTO(List<Lancamento> lancamentos) {
-	   List<LancamentoDTO> LancamentosDTOs = lancamentos.stream().map(lancamento -> {
-	       return new LancamentoDTO(lancamento);
-	    }).collect(Collectors.toList());
-
-	    return LancamentosDTOs;
-	}*/
-	
-	
+	private String ContaDestino;	
 	
 }

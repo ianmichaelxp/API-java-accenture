@@ -13,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioDTO {
 
-	//Cannot construct instance of `br.org.javangers.bankline.controller.dto.UsuarioDTO` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
 	public UsuarioDTO(Usuario usuario) {
 		this.login = usuario.getLogin();
 		this.senha = usuario.getSenha();

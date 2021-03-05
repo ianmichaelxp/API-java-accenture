@@ -51,19 +51,3 @@ public class UsuarioService {
 }
 
 
-/*
- * {
-    "login": "aluno5@email.com",
-    "senha": "$2a$10$dty547kETqtuTLkhDUKvq..4Dvr27ZDK3OVZ3carNkrPyZ/xVbNhq",
-    "nome": "ian",
-    "cpf": "12345678901"
-}
- * 
- * {
-    "login": "ian50@email.com",
-    "senha": "$2a$10$GjlswtOb.fIsGs7Fy44sdekeOZrNHeryyCfvT42eR8fY96TGymow.",
-    "nome": "ian",
-    "cpf": "12345678901"
-}
- * 
- * */
