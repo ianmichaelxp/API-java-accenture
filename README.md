@@ -1,10 +1,10 @@
 # Projeto Accademia Accenture - Bankline Java API
 
 API de um Bankline com cadastro de usuário, contas e lançamentos.
-A documentação da API pode ser acessada em [https://banklineaccenture.herokuapp.com/swagger-ui.html](https://accountbank-api.herokuapp.com/swagger-ui.html)
+A documentação da API pode ser acessada em [https://banklineaccenture.herokuapp.com/swagger-ui.html](https://banklineaccenture.herokuapp.com/swagger-ui.html)
 
 ## Time Javangers Assembly
-- [Ian Michel](https://github.com/ianmichel)
+- [Ian Michel](https://github.com/ianmichaelxp)
   Responsável pela implementação das rotinas de Usuário e Login, além da configuração do Spring Security e utilização de JWT
 - [Nicholas Alves](https://github.com/Nicholas-Alves)
   Responsável pela implementação das rotinas de Dashboard, além a implementação e configuração do Swagger-UI
@@ -44,7 +44,7 @@ O service faz as validações para criação do usuário.
 - Não pode cadastrar um usuário com um login já existente no sistema.
 - No cadastro de um novo usuário é criada uma Corrente além de um plano de conta (categoria) "Salário" do tipo "Receita"
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## Conta
 O model tem os atributos:
@@ -63,7 +63,7 @@ O service faz as buscas necessárias como:
 - buscaPorNumeroETipoConta(String numero, TipoConta tipoConta)
 - buscarPorUsuarioId(Integer usuarioId)
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## Lançamento
 O model tem os atributos:
@@ -88,7 +88,7 @@ O service faz as validações para criação do lançamento.
 - No caso de um débito, o valor passado será subtraido do saldo da conta.
 - No caso de uma transferência, o valor passado será subtraido do saldo da conta do usuário e adicionado no saldo da conta do destinatário, e será criado dois lançamentos um em cada conta.
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## Plano Conta (Categoria)
 O model tem os atributos:
@@ -102,20 +102,20 @@ Tem os getters e setter dos atributos.
 O service faz as validações para criação do plano conta.
 - A descricao, o tipo e o Id do usuário não podem ser nulos.
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## Login
 O service faz a validação do login do usuário no sistema.
 - O login e a senha não podem ser nulos.
 - Busca o usuário pelo login e compara a senha passada com a cadastrada.
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## Dashboard
 O service faz a busca dos dados necessário no dashboard do sistema.
 Também faz a busca dos lançamentos para o extrato por data de início e fim.
 
-O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://accountbank-api.herokuapp.com/swagger-ui.html) feita com o Swagger
+O Controller mapeia as rotas da API, que podem ser vistas com mais detalhes na [documentação](https://banklineaccenture.herokuapp.com/swagger-ui.html) feita com o Swagger
 
 ## TipoConta Enum
 - CORRENTE
